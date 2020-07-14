@@ -1,0 +1,1169 @@
+# setup auto redirect to r/askTO
+    title (regex): ['\?']
+    type: text submission
+    moderators_exempt: true
+    comment: |
+     Your submission appears to be a question and has therefore automatically been removed. Please head over to /r/askTO to resubmit.  Try [searching](https://www.reddit.com/r/askTO/search) too, your answer might already be there! 
+    
+     The community there is happy to help. Your post will have visibility on the /r/toronto sidebar shortly, as well as tomorrow in the daily digest thread.
+    
+     If you haven't seen it yet, please check out [our wiki](https://www.reddit.com/r/toronto/wiki/) for answers to regular questions.
+    action: filter
+    
+---
+# setup auto redirect to r/askTO
+    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how|can).{1,20}(i|we)']
+    type: text submission
+    moderators_exempt: true
+    comment: |
+     Your submission appears to be a question and has therefore automatically been removed. Please head over to /r/askTO to resubmit.  Try [searching](https://www.reddit.com/r/askTO/search) too, your answer might already be there! 
+    
+     The community there is happy to help. Your post will have visibility on the /r/toronto sidebar shortly, as well as tomorrow in the daily digest thread.
+    
+     If you haven't seen it yet, please check out [our wiki](https://www.reddit.com/r/toronto/wiki/) for answers to regular questions.
+    action: filter
+    
+---
+    # remove coupon spam
+    title (regex): ['(uber|grabb|doordash|lyft)']
+    domain: "self.toronto"
+    title+body (regex, includes): ["free", "co(de|upon)", "10|20|15", "promo", "food"]
+    
+    moderators_exempt: false
+    modmail: Post removed because it looked like coupon spam. Please verify.
+    action: spam
+
+---
+    # remove lost and found
+    title (regex): ["(lost|found|stolen)"]
+    domain: "self.toronto"
+    title+body (regex, includes): ["(keys?|wallet|i?phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
+    ~title+body (regex): ['dog', 'cat', 'pet']
+    moderators_exempt: false
+    action: remove
+    comment: Your submission has been automatically removed because it appears to be a lost & found post, which should be posted in /r/lostandfoundTO
+
+---
+
+    # Automatically remove anything that gets 4+ reports and send modmail
+    reports: 4
+    action: remove
+    modmail: The above item was automatically removed due to receiving 4+ reports. Please verify that this action was correct.
+
+---
+
+    # Domain blacklist
+    domain+body (includes):
+        - thereligionofpeace.com
+        - blogspot.*
+        - trc.daily-beat.com
+        - nearbyhelp.ca
+        - torontorevolt
+        - weeklyvoice.com
+        - noxious.ca
+        - daily-buzz.info
+        - jamiesarner.com
+        - jeremyying.ca
+        - baystreetblog.com
+        - montecristomagazine.com
+        - aestheticmagazinetoronto.com
+        - juliekinnear.com
+        - craveto.com
+        - wikito.org
+        - viewthevibe.com
+        - otsn.ca
+        - itsonvillage.com
+        - edmonton.talks.news
+        - do416
+        - vacaroo
+        - tranqool
+        - elocalpost
+        - airportlimo
+        - boxshop
+        - brownpak
+        - buzzbuzzhome
+        - buzznet
+        - commutero
+        - coursehero
+        - decorium
+        - dermaquest
+        - getsomesuga
+        - goladle
+        - ilovetoronto.com
+        - kingwestlofts
+        - likter
+        - moldbacteria.com
+        - moving-storage.net
+        - ontariosunshinelist
+        - parkbench
+        - plumberhelp
+        - realty247
+        - sapnatoronto
+        - tastetoronto.ca
+        - whatsupic
+        - niallgordonassociates
+        - venuevortex
+        - blowe.ca
+        - financegirltoronto.com
+        - bitigee.com
+        - urbanizer.yp.ca
+        - urbanizer.ca
+        - airlinelimo.com
+        - livecringe.com
+        - jihadwatch.org
+        - leadingwire.com
+        - shedoesthecity.com
+        - mktlist.ca
+        - cabbagetownto.com
+        - missingpeople.ca
+        - missingpeopleincanada.ca
+        - north-shore.info
+        - rahousing.com
+        - sivtimes.com
+        - bnaibrith.ca
+        - spencerfernando.com
+        - thenectarine.ca
+        - outline.com
+        - themissing.ca
+        - thelogic.co
+        - narcity.com
+        - thepostmillennial.com
+        - nationalhelm.co
+        - topgearglobal.com
+        - dwelly.ca
+        - torontosdirtysecret.com
+        - puffadvisor.com
+        - jordanthrilla.com
+        - financegeek.org
+        - 7ummitmagazine.com
+        - truthhurtzmedia.wordpress.com
+        - change.org
+        - chng.it
+        - theredpanther.com
+        
+    action: spam
+
+---
+
+# T-shirt spammers 
+type: any
+body: ["qualifiedfashion", "newshoper", "teesparrow", "masterthetees", "sungearstore", "rockinggear", "baamboom", "cooltees", "christmastees", "amezes", "halloweencolors", "gearcreators", "thefilmfix", "moviestowatch", "dizcope", "bestteeshop", "gearshopzone", "hottopics", "myguitarreview", "orimpogames", "newtshirtshop", "gearshop", "bestteeshop", "shirtsuite", "exclusivetees", "usgearfair"]
+action: spam
+action_reason: "T-shirt spam website"    
+
+---
+
+    # Known spammers, mostly to clear the spam queue.
+    author:
+        - Blogwrath
+        - brownpak
+        - desairealty
+        - lalkhan9
+        - theMuseumCalendar
+        - KaylinnBean
+    action: spam
+
+---
+
+    # Survey spam.
+    domain+body (includes):
+        - esurveycreator.com
+        - surveymonkey.com
+        - fluidsurveys.com
+        - kwiksurveys.com
+    author:
+        account_age: "< 7"
+    action: spam
+    modmail: Post removed for survey spam.
+
+---
+
+    # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
+     title+body: [beachside]
+     action: remove
+     author:
+         ~name: [torontothingstodo,sprungy,exploretoapp]
+     modmail: Post removed due to use of potentially offensive word "{{match}}".
+
+---
+
+    # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
+     title+body (regex): ['n[ie]g(ger|ga|g?let|g?ro|g?uh?)s?', 'fag(gy|s)?', 'fagg?([eio]t)?(ry)?', 'japs?', 'groids?', '(Cracker|Coon)Town', 'HateFuck', 'Fatah', 'sewer rats?', 'chink(s|y|ie)?', 'trann(y|ies?)', 'din.?du', 'kill (yo)?urself', 'k[iy]kes?', 'feminazis?', 'cucks?', 'sewer rats?', 'hood.?rats?', 'kr[ao]uts?', 'd[iy]kes?', 'porch ?monke?(y|ie)s?', 'ha[jg]is?', 'honk(e|y)s?', 'spick?s?', 'wet[ -]?backs?', 'gooks?', 'jigg?[ae]r?boos?']
+     action: report
+     action_reason: 'contains "{{match}}"'
+
+
+---
+    # Auto-reported words/phrases.
+    title+body (regex): ['soros', 'ghomeshi', 'boogaloos?']
+    action: report
+    action_reason: 'contains "{{match}}"'
+    #modmail: Post reported due to use of potentially offensive word "{{match}}".
+
+---
+
+    # Send a mod message regarding Facebook links by default and send a mod mail.
+    url+body (regex): ["facebook\\.com", "fb\\.com", "fb\\.me"]
+    ~author:
+        - torontothingstodo
+        - sprungy
+        - qazimodo
+        - exploretoapp
+    modmail: Facebook link posted with potential personal information. Please review.
+
+---
+
+    # Send a mod message regarding Facebook media links by default and comment on the post.
+    url+body (regex): ["fbcdn-s?photos-.*?\\.akamaihd\\.net","fbcdn\\.net","facebook\\.com/photo*","facebook\\.com/video*","facebook\\.com/*/albums/*"]
+    action: remove
+    modmail: Facebook hosted media posted. Post has been removed and a comment has been left. Please review.
+    comment: |
+        Your submission has been automatically removed due to a link to media hosted on Facebook.
+
+        Media hosted on Facebook can easily be tracked back to the original posters account based off of the URL. We prevent these posts to protect peoples privacy.
+
+        Please consider reposting your media on [imgur](https://imgur.com/), [YouTube](https://www.youtube.com/) or another media hosting provider.
+
+---
+
+    # Automatically remove Facebook links that gets 2+ reports and send modmail
+    url+body (regex): ["facebook\\.com", "fbcdn\\.net", "fb\\.com", "fb\\.me"]
+    reports: 2
+    action: remove
+    modmail: Facebook link was automatically removed due to receiving 2+ reports. Please review.
+
+---
+
+    # Remove links to crowdfunding sites.
+    standard: crowdfunding sites
+    author:
+        account_age: "< 7"
+    action: remove
+    modmail: Post removed for linking to a crowdfunding site. Please review.
+
+---
+    # Remove comments and posts if the user is less than 7 days old or has less than 50 karma and their comment matches certain warning words.
+    title+body (regex): "cringe|\\bmods?|asshole|bitch|butt\\s*hurt|butt\\s?sex|censor(ing|ed)?s?|chinks?|circle\\s*jerk|creep\\b|cunts?|dipshits?|douche(bag)?s?|down\\s*vote|facebook.com|fb.com|fag|fuck (yo)?u|hipster|homos?\\b|kill yourself|linkedin.com|mod(erator)?s?|neck\\s*beard|nigger|pakis?|pieces? of shit|r\\/cringe|racial|racis[mt]|retard(ed)?s?|sluts?|spic\\b|stfu|the gays|trann(y|ies)|up\\s*vote|whore|you fuck|you're fucked"
+    author:
+        satisfy_any_threshold: false
+        comment_karma: "< 50"
+        account_age: "< 7"
+    action: remove
+    modmail: Post by new user /u/{{author}} removed for failing bad word check for the word "{{match}}". Please review.
+
+---
+    
+    type: comment
+    author:
+        account_age: "< 2"
+        is_contributor: false
+    action: remove
+    modmail: Post by hours-old user /u/{{author}} removed. Please review.
+    ~author: [topublichealth]
+
+---
+    #New Account Submission Filter
+    type: submission
+    author:
+        account_age: "< 7"
+    action: remove
+    modmail: Submission by days-old user /u/{{author}} removed. Please review.
+    
+---
+
+    domain (starts-with): [m., mobile.]
+    action: remove
+    Comment: |
+        Your submission was automatically removed because you linked to the mobile version of a website. 
+
+        Please submit a non-mobile link instead.
+
+---
+
+    # Doxxing alerts.
+    title+body (regex): ["\\(?(\\d{3})\\)?([ .-])(\\d{3})([ .-])(\\d{4})","(\\d{5})([ .-])(\\d{6})","\\(?(\\d{4})\\)?([ .-])(\\d{3})([ .-])(\\d{3})","\\(?(\\d{2})\\)?([ .-])(\\d{4})([ .-])(\\d{4})","\\(?(\\d{2})\\)?([ .-])(\\d{3})([ .-])(\\d{4})","\\+([\\d ]{10,15})"]
+    ~body+url (regex): "(\\[[^\\]]+?\\]\\()?(https?://|www\\.)\\S+\\)?"
+    ~body+title+url (regex):
+        - (800|855|866|877|888|007|911)\\W*\\d{3}\\W*\\d{4}
+        - \\d{3}\\W*555\\W*\\d{4}
+        - 999-999-9999
+        - 000-000-0000
+        - 123-456-7890
+        - 111-111-1111
+        - 012-345-6789
+        - 888-888-8888
+        - 281\\W*330\\W*8004
+        - 777-777-7777
+        - 678-999-8212
+        - 999([ .-])119([ .-])7253
+        - 867( -)?5309
+        - 505\\W*503\\W*4455
+        - 416-921-9494    # Tenant housing.
+        - 416-808-2222  # TPS non-emergency
+        - 416-392-2273 # Toronto Humane Society
+        - 877-378-6123 # Presto customer service
+        - 416-441-1414 # Eva's place women's shelter
+        - 416-338-4766 # Central shelter intake
+        - 1-877-338-3398 # Central shelter intake
+    action: remove
+    modmail_subject: Potential doxxing.
+    modmail: |
+
+        {{permalink}}
+
+        The above {{kind}} by /u/{{author}} was removed because it contained a possible phone number. Please investigate immediately, and consider adding to rule whitelist on the wiki page.
+
+
+---
+    # Remove comments by users with -100 karma, with a whitelist for non-trolls with often dissenting opinions.
+    author:
+        comment_karma: "< -99"
+    action: remove
+    #modmail: Post by negative-karma user /u/{{author}} removed as potential troll. Please review and considering whitelisting in AutoModerator wiki.
+
+---
+
+    # Approve all comments & posts
+    priority: 9000
+    author:
+        - emily_strange
+        - thegoodbadandsmoggy
+        - Glob_TO
+        - RavineWalker
+        - TeamCANADALAND
+        - Goldsbie
+        - JustinLing
+        - SidewalkToronto
+        - topublichealth
+    type: any
+    action: approve
+
+---
+
+    # Send totesmessenger comments to modmail
+    author:
+        - totesmessenger
+    action: remove
+    modmail_subject: "TotesMessenger notification"
+    modmail: |
+        /u/{{author}} reporting link from another sub:
+        
+        {{body}}
+        
+
+---
+
+    # User shadowbans
+    author:
+    
+        - 93TorontoBlueJays
+        - ldeas_man
+        - un_a_idiet
+        - nobrakestrain
+        - wweshill
+        - AlternativFacts
+        - olderspicerack
+        - OrangeZext
+        - casual_gamer_dude
+        - tac0flavour
+        - 354654363
+        - chicken_supreme6
+        - modfail____
+        - PinophytaClone
+        - blm666
+        - obama_voter
+        - EventsMasterTO
+        - Draxchir
+        - throwaway147258369a
+        - plurplebuzz
+        - serfatiyrd
+        - UnnecessaryDetails
+        - acid_barrett 
+        - Aelophars
+        - Oatmealandwhiskey
+        - Incognitroll
+        - driftpig
+        - SergioTopas
+        - 4_1_6
+        - ineedanewaccountplea
+        - jrdnbshp
+        - IBRAHIMAZ
+        - TorontoPoetrySlam
+        - mikailus
+        - Rocksbury
+        - Redditadventures
+        - youareanentitledfuck
+        - jimjimjimjaboo
+        - Abizian
+        - steveodore
+        - alphadawg123
+        - AryanGuard
+        - TorontoThoughtPolice
+        - IShitOutOfMyDick
+        - JTRIG_trainee
+        - tts4ac
+        - poo__in_the_loo
+        - roncampagna 
+        - torontohomealerts
+        - cointossss
+        - fknzed
+        - poz_me_up_m8
+        - tibettanmister6
+        - autisticpoo
+        - MajorJohnTory
+        - d0sta
+        - UncleTetsusCream
+        - SrpskaGarda1389
+        - LamboOwner69
+        - toguy217
+        - 4254wfvav
+        - coffeeandbaconcheese
+        - MikeCheckCE
+        - TopofToronto
+        - FilthyVagabond
+        - baritaliaserver
+        - FaleGribble
+        - bloodytampon187
+        - chirplord
+        - combo187
+        - damojo2
+        - delive5
+        - ewfvwi
+        - Duurrrrrrrrrrrrrrrrr
+        - digitaladapter
+        - GeneraloftheTrolls
+        - humptydumptyford
+        - grimygr1
+        - jesseship
+        - lemonbuketluv
+        - limits660
+        - progressiveracists
+        - prohibitedopinion
+        - reogin
+        - somuchprivileges
+        - SEXY_PENIS_CUM
+        - Tardgoblin
+        - TheHaterGator
+        - TheRealityOfItIs
+        - torontohs
+        - titypen
+        - uncomfortablefact
+        - dzoni1234
+        - RIP_Koop
+        - LoveTheEwok
+        - PickYourOwnCotton
+        - jewboy46
+        - whysosodium
+        - uuuuj-kk
+        - 99opp
+        - nigger_rope
+        - jimmythegreek217
+        - ChefBoyaredicksgood
+        - fisher_king_toronto
+        - grimprospects
+        - trebizondEu
+        - InternetCube
+        - d-bearyman
+        - ingrid1982
+        - girl-red
+        - godawfulshitisay
+        - myrohyko
+        - doxxedfordisagreeing
+        - Anti-NaziPolicestate
+        - gandallf
+        - NeckbeardAce
+        - JimmyDRussell
+        - dirtysandchez
+        - Ghomeshi
+        - OverlordOfTheFaggots
+        - MoonlightsonataX
+        - og_linda
+        - Dirtyminority
+        - bigfatpervert
+        - whichxone
+        - lastpulley
+        - MayorJohnTory
+        - truuth3012
+        - idiet_rapist
+        - IamAStickman 
+        - CantHearYouBot
+        - niggeryniggers
+        - BarryMikokinner
+        - WhyDoYouShadowBanPPL
+        - shitnigguhs
+        - My_R_Toronto_Acct
+        - deadbabbies
+        - lesboautisticweeabo
+        - emojisonly
+        - lenny247
+        - Ilovenyinjune
+        - Torontonian11
+        - toforme1
+        - toforme
+        - jimflexas
+        - torontorentals123
+        - torontobong2
+        - Nezaus
+        - HugeAnalFissure
+        - JianGhomeshiCBC
+        - carl_cuck
+        - throwawayshitycoment
+        - IFuckNegroes  
+        - mviosdogfiuops
+        - rufewfhs
+        - ilovedillpickle
+        - paul_hattlmann
+        - dj_tranzit
+        - AmazingYoureATroll
+        - djtranzit
+        - torontoBREAKINGNEWS
+        - PokemangoZombie
+        - DragonChampion69
+        - OwnABlack
+        - douche4real
+        - halonmedia
+        - SnackbarFaith
+        - TraeWaynes
+        - raven0usvampire
+        - u_r_a_idiet
+        - FAGETMAGNET
+        - JohnKimble111
+        - Celda
+        - OffendedTranny
+        - hockeytoronto
+        - gardenwater
+        - ---ass---
+        - butitwas3to1
+        - giggertigger
+        - robertchaffin
+        - ManOfScienceAndSex
+        - GayNiggerRetard
+        - ur_a_narcissist
+        - nathanroyimedia
+        - vacationhomerents
+        - Jiedushi
+        - JizlamDeezNutz
+        - dickfromage
+        - Horsefucker8t55
+        - gook-kook
+        - GoldenKapppa
+        - fagsmoker69
+        - AlAbdulWahid
+        - ppcwp
+        - BlackDynamiteFromDe6
+        - HarperDisemboweledUs
+        - Beef-supremacist
+        - NovaMAXIM
+        - Pooboibpolloi
+        - FLESHFUCKER
+        - cats_in_blankets
+        - Apane101
+        - Mr_MAGAto
+        - drt-massi
+        - YahBas
+        - un_supreme
+        - liftcannabis
+        - ur_a_ldlet
+        - NotTurboTaxGiraffe
+        - jstcooked
+        - teddyhart
+        - haiku-testbot
+        - tenpies
+        - forevergone2
+        - Muhammad_is_a_rapist
+        - SafeIdler
+        - eliforpc
+        - OutsideRead
+        - isaccis07
+        - CloudsHideNibiru
+        - Penisboyr7483
+        - No_More_Mr_Man
+        - 636god
+        - 12j8hr712g6rg12h
+        - ParticularContact
+        - goneagaintoday2
+        - OriginalSecurity
+        - CokedUpLeprechaun
+        - hamandegger187
+        - mittslayer
+        - problaw
+        - beerthirst
+        - DivineDante
+        - dolbilldian
+        - SWlobShop
+        - cuckedcanuck25
+        - OntarioCow
+        - CisJaysLeafs
+        - MCGA2019
+        - Russian_bot_1001
+        - Mellon2
+        - intertru
+        - Chicken-supreme
+        - The_same_torontonian
+        - Cuckboysoylover
+        - protic75
+        - Madethisnowwhat
+        - PointyRoo
+        - enrico_the_frog
+        - Shitstain_of_Somalia
+        - BahenChod99
+        - AstreaPrandish99
+        - Other_Method
+        - Nigerian_--_Prince
+        - Ghostmanzbeglisten
+        - Settler_Canadian
+        - MrT6
+        - NorleansCriminal
+        - Bakerschoice22221x2
+        - XUE_LI_HUANG
+        - Trumps4thWife
+        - Gavel_with_Nails
+        - peaceouteast
+        - BBR123
+        - onele1
+        - SupplySideDeicide
+        - fantafountain
+        - marybobbins86
+        - TOShooter88
+        - Realshit7451
+        - Clamancer
+        - Johnbuo1
+        - Theres1InEveryCrowd
+        - jport82
+        - NeitherDealer
+        - 808HeartDrake
+        - YusraKhogali
+        - Bob_Loblaw007
+        - virtuesignal247
+        - forbz5
+        - TriangleDimes
+        - StuffedAnalCrust
+        - BigCoccyx5757
+        - DrBenjamin_Jeffcoate
+        - BudgetCollection
+        - Hourislate
+        - shellshock420
+        - ByeByeTrudeau2019
+        - Infamous_Programmer
+        - muqaala
+        - Gorhams_Rangers
+        - canadasuperperson
+        - Amalgamation68
+        - sdkjgsdjkgsdjk
+        - greenmek
+        - virtualtuber
+        - newgirlsass
+        - SanFernando33
+        - ag3ncy
+        - Exter10
+        - ArtVandelayThrowAway
+        - archdemon001
+        - ineeddrugas
+        - DisGunBeGroot
+        - LuckyTangerine
+        - Notwithstandya
+        - This_is_too_white
+        - ramolp
+        - logtechnats
+        - sswias2
+        - GandEdict
+        - YurMeister
+        - Pantz44
+        - AmonJohnson
+        - 4303troy
+        - patrickmanning1
+        - gddub
+        - QueenStretch
+        - SpiritualTravelO1
+        - PentagramSam
+        - Torontothrowawayhd
+        - NoSanctuaryFromLaw
+        - dunnowhy_justcomply
+        - yarkik
+        - AggressiveCorn
+        - Quorthon123
+        - dipset4444
+        - GenericGarbageNeedle
+        - TorontoBrewJays
+        - trudeauisapussy
+        - perapatak
+        - FlyersPajamas
+        - fhrufuejdhcudhd
+        - rexduke
+        - Spooderman_Swagger
+        - do1979
+        - wee-tod-did
+        - blackmancanada
+        - DogCjck88
+        - Jeezy2020
+        - forgotmypassword125
+        - WeeklyPower
+        - babybarbeque
+        - Kyle6969
+        - mickmeagX
+        - rTorontoModsAreFags
+        - GlobalWarmingShite
+        - eyeswdeshut
+        - FemSlutelle
+        - Upstairs_Stick
+        - DonaldTrumpFan416
+        - Fuckfeminism88888
+        - Metallurg2
+        - demographics123
+        - hyene
+        - sh00t3rmcgav1n
+        - BOBY_BOYS_REVENGE
+        - cookie_n
+        - ChiefTenderbelly
+        - Moe_Hammerd
+        - Toronto_is_for_fags
+        - AnimalCock8
+        - jimythetulip
+        - Shooter_McGav1n
+        - xyzzy-in-to
+        - Moon_fog
+        - PCnoName
+        - Bussstin
+        - Pro1Gamer420691488
+        - AbilyaBro
+        - TdotGOONshoota
+        - Moses4Seas
+        - pikkkey
+        - BAPE8chick8
+        - WhiteThermite
+        - MtFTFWTERFonPrEP
+        - Winchester_1011
+        - the_chinesechicken
+        - zetrooth53
+        - KennyLogginName
+        - CarrionLuggage
+        - Helixstar762
+        - TheSnakeTheSnake
+        - SubwayCreatine
+        - Consistent-Flower
+        - DonaldTrumpForeskin
+        - Zwillx
+        - yungeegee
+        - YorkUSafeWalk
+        - toronto-mandem
+        - mcjagga
+        - Intelligent-Yam
+        - machomaam
+        - Replicant_101
+        - GrievingFather1
+        - Karma-Police_
+        - 3215643asdf354
+        - 1111llll1111llll1111
+        - CanadiansAreCowards
+        - Flyboy1901
+        - mobileposter
+        - ar2dbag
+        - arthisInTO
+        - dogstarman
+        - bobfromcaygeon
+        - trannyexterminator
+        - SilverBarnacle2
+        - Most-Wholesome
+        - Tyrone_Mamzerovich
+        - SeverusSnaperus
+        - FCJK44
+        - Keep-On-Swimming
+        - WeWuzKangzndShit
+        - torontothrowaway3300
+        - beef-patrol69
+        - eat_mike_h0k
+               
+    action: remove
+
+---
+
+    # Remove comments under 25 characters that include the words: idiot, dumb, stupid, idiet and made by /u/ur_a_idiet
+    body(regex): ['idi[eo]t', 'dumb', 'stupid']
+    type: comment
+    body_shorter_than: 26
+    author:
+        - ur_a_idiet
+    action: remove
+
+---
+
+    # Report posts possibly by the anti-cop-rant spammer.
+    title+body (includes, case-sensitive):
+        - POLICE
+        - LISI
+        - FAGGOT
+        - TROLL
+        - AUTISTIC
+        - STUNT
+        - NEW YORK POST
+        - CORRUPT
+        - ASSAULT
+        - OFFICER
+        - NOBODY
+    author:
+        satisfy_any_threshold: false
+        comment_karma: "< 10"
+        account_age: "< 1"
+    action: report
+    report_reason: "possible anti-cop rant spam (match on '{{match-title+body}}')"
+    modmail: "Post by new user /u/{{author}} reported as possibly being by the anti-cop spammer (using the word '{{match-title+body}}'). Please double-check."
+    
+---
+
+    # auto-sticky /u/torontothingstodo posts
+    author:
+          - exploretoapp
+    title: ["Things To Do"]
+    type: text submission
+    set_sticky: 2
+
+---
+
+    # AUTO CONTROVERSIAL TAG ISLAM/MUSLIM/Jordan Peterson Stuff    
+    title (regex, includes): ["Islam", "M(u|o)slim", "(BLM|black lives matter)", "Jordan Peterson", "Soufi"]
+    type: submission
+    moderators_exempt: false
+    comment_stickied: true
+    comment: |  
+        Due to the nature of this topic and the likelihood of brigading as evidenced by previous posts, this post has been tagged as controversial. As a controversial thread,
+        
+        * All participating commentators must have significant /r/Toronto histories in order to prevent brigading. Any violators will receive a ban without warning.
+        
+        * Any rule-breaking actions by /r/Toronto regulars will be punished with increased severity (i.e. 30 day ban instead of a 7 day ban, etc.).
+        
+        Negative opinions are fine! Blatant racism and pushing racist agendas are not! Please be careful to follow Rules 2 and 3 and engage in polite, respectful dialogue.
+    modmail: Post tagged as controversial, please verify.
+
+---
+    # Auto Flair Articles
+    type: link submission
+    domain: [blogto.com, torontolife.com, torontoist.com, vice.com, spacing.ca, thebeaverton.com, bnn.ca, torontostoreys.com, nowtoronto.com, huffingtonpost.ca, nytimes.com, nationalgeographic.com, stevemunro.ca, torontopubliclibrary.ca, urbantoronto.ca, buzzbuzzhome.com]
+    set_flair: 
+        css_class: linkflair-flair-article
+        template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
+
+---
+    # Auto Flair Discussion
+    type: text submission
+    set_flair:
+        css_class: linkflair-flair-discussion
+        template_id: ae79e452-9cc0-11e7-b690-0ee40dd4f03a
+---
+    # Auto Flair History
+    type: link submission
+    domain: [history.com]
+    set_flair: 
+        css_class: linkflair-flair-historical
+        template_id: ba1346c8-9cc0-11e7-a9ad-0e9f265a8f2c
+
+---
+    # Auto Flair News
+    type: link submission
+    domain: [cbc.ca, ctv.ca, toronto.ctvnews.ca, ctvnews.ca, cp24.com, tvo.org, citynews.ca, globalnews.ca, bellmedia.ca, iheartradio.ca, thestar.com, theglobeandmail.com, metronews.ca, beachmetro.com, financialpost.com, nationalpost.com, torontosun.com, insidetoronto.com, sportsnet.ca, urbantoronto.ca, ipolitics.ca, 680news.com]
+    set_flair: 
+        css_class: linkflair-flair-news
+        template_id: c4304dcc-9cc0-11e7-bdc8-0efff6c24092
+---
+    # Auto Flair Picture
+    standard: image hosting sites
+    set_flair: 
+        css_class: linkflair-flair-picture
+        template_id: ce3e9792-9cc0-11e7-8b05-0e6e91299d12
+---
+    # Auto Flair Twitter
+    type: link submission
+    domain: [twitter.com]
+    set_flair: 
+        css_class: linkflair-flair-twitter
+        template_id: b8a076d4-b904-11e7-90e6-0e34dfbbc874
+---
+    # Auto Flair Video
+    type: link submission
+    domain: [youtube.com, youtu.be, vimeo.com, v.redd.it, streamable.com]
+    set_flair:
+        css_class: linkflair-flair-video
+        template_id: be359944-b904-11e7-b2e8-0ea734235272
+---
+
+        # Auto Flair Alert
+    priority: 1
+    title (regex): ["(TTC|subway|road) closures?", "missing"]
+    domain: [torontopolice.on.ca, torontopolice.on, torontopolice.ca, ttc.ca, yrp.ca, self.toronto]
+    set_flair: 
+        css_class: linkflair-flair-alert
+        template_id: d486f26c-b60c-11e5-8295-0e80ab820361
+   
+---
+    # Flair Your Fixer/Opinion
+    priority: 1
+    type: link submission
+    url: [thestar.com/opinion, thestar.com/yourfixer, thestar.com/business/opinion]
+    set_flair: 
+        css_class: linkflair-flair-article
+        template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
+
+---
+    # Auto Flair BlogTO as Articles
+    type: link submission
+    domain: [blogto.com]
+    set_flair: 
+        css_class: linkflair-flair-article
+        template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
+    
+---
+    # Remove Youtube Channel
+    domain: [youtube.com, youtu.be]
+    media_author: ["Rebel Media", "Faith J Goldy", "The Observable Thing", "Rebel News", "Rebel Canada", "Rebel Edge"]
+    action: remove
+    action_reason: "Rebel/Faith"
+    moderators_exempt: false
+    
+---
+    #Mod Preview
+    author:
+        - mexican_lemur
+        - WigglyButtNugget
+        - iToronto
+        - Ontario0000
+        - CREAMY-JUICE-HOLE
+        - JDDDJD
+        - Sweetwater888
+        - Tylersjourney
+        - GaryCPhoto
+        - cdn_scribbler
+        - WildShop
+        - Dew_u_c_me
+        - jerkass
+        - connstar97
+        - PoisonIvy2016
+        - TorontoIsOkay
+        - JuwannaMans
+        - WhiteBoyRicky
+        - jpfolksinTO
+        - ThrowAway_Avoid_Mods
+        - thechampkabil
+        - ExtraTerritorialData #my alt
+        - BigCoccyx5755
+        - NotTheLittleBoats
+        - Oscartdot
+        - BacalaMuntoni
+        - geckofishknight
+        - Ontario1979
+        - Boogilywoo2
+        - StreetcarDi
+        - is_not_funny
+        - TheGr8WhiteKurwa
+        - Satanx2
+        - bigdonny187
+        - sayeeeeeeeedh
+        - l2daless
+        - leafinthewind69
+        - HighBudgetPorn
+        - the9oh5
+        - Kcolcworks
+        - omzsvc
+        - 8RICKY8
+        - ChoppaEightyEight
+        - HeHateMe8
+        - IAmNotWhoever
+        - AggressiveCorn1
+        - ChristineBlaseyFord
+        - HipStairs
+        - PatriciaBullone
+        - Wonderful_Sun
+        - angie6ix
+        - GS9Bobby
+        - shorterstuff
+        - WhiteCollarNeal
+        - ortonsbulge
+        - MutedPrinciple
+        - cryptoniceguy
+        - The_Killbot
+        - closingbell
+        - Glum67moeba
+        - AlternativeAddress6
+        - L23gju5ping732be77y
+        - wappawot
+        - tornpages888
+        - blartarty
+        - poop_pee_2020
+        - aeolise
+        - AlphadogMDE
+        - DamnHeRight
+        - jimcoyot
+        - Spiceguy91
+        - ollorT-in-Heaven
+        - Dontyoutellherpls
+        - ExtraCounty
+        - so_much_cum
+        - WestProcedure
+        - pineapple_supplex
+        - hox_blastien
+        - entaro_tassadar
+        - bernout1997
+        - severejacket
+        - white-conservative
+        - pogoshi_fatsomoto
+        - jacksawyer75
+        - JCR53
+        - HellfireDreadnought
+        - Fucktoront0
+        - eteras83
+        - LiftMeditateApproach
+        - iSnitchedOnTekashi69 
+        - mrazeksbigballs
+        - capass123
+        - BeerLeagueSnipes
+        - DatBoyKash
+        - RempelsVibrator
+        - SpiritualHearing
+        - torontoJD
+        - IDislikeYourMeta
+        - stoneyyay
+        - YongeCambodian
+        - OpenCap
+        - please_at_me
+        - picard102
+        - BruceLeeIacocca
+        - femdroid
+        - LicencedtoShill
+        - CanadaPrime
+        - rhino_access_panel
+        - TrickHistory6
+        - shekel_merchant
+        - Osheaga2019
+        - MoonDoomden
+        - Middlelogic
+        - AnimalCock8
+        - KindnessWins
+        - Illegal2beWhite
+        - Black__lotus
+        - kramersaidthenword
+        - Neat_Onion
+        - test1560
+        - kelosi
+        - Truthisnotanopinion
+        - HereForDafonte
+        - applefazed
+        - HottAzn
+        - pooflinger555
+        - Toronto_man
+        - dfgdfgadf4444
+        - Roaring-2020
+        - MagDumpsForTheHomies
+        - gatcojuibb
+        - lucjatendezki
+        - scooplevy
+        - frankcastlemusic
+        - decolonizetoronto
+        - kkardi
+        - yeeehaw554
+        - Immediate-Fault
+        - SciTechJourno
+        - goingmyway
+        - vintxgelocks
+        - AssumingHyperbolist
+        - poopoonpeepee
+        - StupidisAStupidPosts
+        - Antifactist
+        - DeepStateOfMind
+        - nonsensicalcriticism
+        - Andrenachrome
+        - Prior_Republic
+        - Gregory-Pecking
+        - Additional-Article
+        - JoshDonaldsonTrump
+        - Larifarim
+        - etctakiolic
+        - bluebook11
+        - No_Fun_Guy
+        - voorrechtvandepoliti
+        - zenbabyzen
+        - PerpetualAscension
+        - buttonmashed
+        - jaasman
+        - this_account_is_mine
+        - bag_waffle_bag
+        - ricosandarx
+        - mrpower12
+        - skepticalthrow699
+        - Fenderben
+        - 416DragQueens
+        - auntwamp
+        - TeegeeackXenu
+        - FivioFive
+        - Roary-2021
+        - PassaLassa
+        - idkwhyimhere91
+        - perfumecream
+        - 1-800-IMA-KAREN
+        - NotABitProfessional
+        - magongles
+        - HolUp-
+        - TheGoodPlaceJanet
+       
+       
+    action: filter
+    action_reason: "Mod Preview"
+    #modmail: "Post removed for Mod Preview - please review {{url}}"
+    #modmail_subject: "Mod Preview"
+    #^If you'd prefer modmail rather than modqueue, remove the # from the above 2 lines and add one to the beginning of action_reason.
+    
+---
+
+    # AUTO TAG FOR CORONAVIRUS STUFF    
+    title (regex): ["Corona(virus)?", "SARS", "cov(-?2|id(-?19)?)"]
+    type: submission
+    moderators_exempt: false
+    comment_stickied: true
+    comment: |  
+        Due to the nature of this topic, users spreading misinformation or breaking r/Toronto rules will be subject to severe mod actions,
+        
+        * For Coronavirus information please follow the relevant health authorities.
+        * [Canadian Public Health Agency](https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html?utm_campaign=not-applicable&utm_medium=vanity-url&utm_source=canada-ca_coronavirus)
+        * [Ontario Ministry of Health](https://www.ontario.ca/page/2019-novel-coronavirus-2019-ncov)
+        * [Toronto Public Health](https://www.toronto.ca/community-people/health-wellness-care/diseases-medications-vaccines/coronavirus/)
+        
+        * Any rule-breaking actions will be punished with increased severity (i.e. 30 day bans+).
+        
+       
+    modmail: Keep an eye out mother fuckerssss.
+
+---
+
+    # Potentially related to moderators
+    title+body (regex): ['mod(erator)?s?']
+    action: report
+    action_reason: 'The above item mentioned the moderators - [{{match}}]'
+
+---
+
+    # Filter items that specifically mention mods by name in the title
+    title+body (regex): ['gammadeltat', 'blackbeatsblue', 'lilfunky1?', '(thegoodbadand)?smoggy', 'beef-supreme', 'slicecom', 'aahrg', 'j0hnny(engl1sh)?', 'fapitalismm?', 'thetorontobot']
+    action: report
+    action_reason: 'Mod mentioned by name - [{{match}}]'
+    
+---
+
+    # Possible removal evasion
+    title+body (regex): ['(remov(e|ing|ed)|delet(ing|ed?)) my (post|comment)s?']
+    action: report
+    action_reason: 'Possible removal evasion - [{{match}}]'
+    
+---
+
+    # Self-promo
+    title+body (regex): ['(i|we).{1,20}(made|launched).{1,20}(store|(web)?site|business|app)', 'lo(ve|ok(ing)?).{1,20} (feedback|suggestions)']
+    moderators_exempt: true
+    ~author: [thetorontobot]
+    action: filter
+    action_reason: 'Possible self promo - [{{match}}]'
+    
+---
+    # Rants
+    title+body (regex): ['rants?']
+    type: text submission
+    moderators_exempt: true
+    ~author: [thetorontobot]
+    action: report
+    action_reason: 'Possible [{{match}}]'
