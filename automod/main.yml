@@ -1158,7 +1158,7 @@ action_reason: "T-shirt spam website"
 
     # Possible removal evasion
     priority: 9000
-    title+body (regex): ['(remov(e|ing|ed)|delet(ing|ed?)).{1,20}(post|comment)s?']
+    title+body (regex): ['(remov(ed?|ing)|delet(ing|ed?)).{1,20}(post|comment)s?']
     action: filter
     action_reason: 'Possible removal evasion - [{{match}}]'
     
