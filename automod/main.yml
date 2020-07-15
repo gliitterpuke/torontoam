@@ -1,4 +1,5 @@
 # question mark in title redirect to r/askTO
+    priority: 7400
     title (regex): ['\?']
     type: text submission
     moderators_exempt: true
@@ -12,7 +13,8 @@
     
 ---
 # title+body variant redirect to r/askTO
-    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how|can).{1,20}(i|we)']
+    priority: 7400
+    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how|can)\b.{1,20}(i|we)\b']
     type: text submission
     moderators_exempt: true
     comment: |
@@ -1130,7 +1132,16 @@ action_reason: "T-shirt spam website"
 
 ---
 
-    # Potentially related to moderators
+    # Posts related to moderators
+    priority: 9000
+    title+body (regex): ['mod(erator)?s?']
+    action: filter
+    action_reason: 'The above item mentioned the moderators - [{{match}}]'
+
+---
+
+    # Comments related to moderators
+    priority: 8000
     title+body (regex): ['mod(erator)?s?']
     action: report
     action_reason: 'The above item mentioned the moderators - [{{match}}]'
@@ -1138,6 +1149,7 @@ action_reason: "T-shirt spam website"
 ---
 
     # Filter items that specifically mention mods by name in the title
+    priority: 8000
     title+body (regex): ['gammadeltat', 'blackbeatsblue', 'lilfunky1?', '(thegoodbadand)?smoggy', 'beef-supreme', 'slicecom', 'aahrg', 'j0hnny(engl1sh)?', 'fapitalismm?', 'thetorontobot']
     action: report
     action_reason: 'Mod mentioned by name - [{{match}}]'
@@ -1145,14 +1157,16 @@ action_reason: "T-shirt spam website"
 ---
 
     # Possible removal evasion
-    title+body (regex): ['(remov(e|ing|ed)|delet(ing|ed?)) my (post|comment)s?']
-    action: report
+    priority: 9000
+    title+body (regex): ['(remov(e|ing|ed)|delet(ing|ed?)).{1,20}(post|comment)s?']
+    action: filter
     action_reason: 'Possible removal evasion - [{{match}}]'
     
 ---
 
     # Self-promo
-    title+body (regex): ['(i|we).{1,20}(made|launched).{1,20}(store|(web)?site|business|app)', 'lo(ve|ok(ing)?).{1,20} (feedback|suggestions)']
+    priority: 7500
+    title+body (regex): ['(i|we).{1,20}(made|launched).{1,20}(store|(web)?site|business|app)', 'lo(ve|ok(ing)?).{1,20}(feedback|suggestions)']
     moderators_exempt: true
     ~author: [thetorontobot]
     action: filter
@@ -1160,9 +1174,10 @@ action_reason: "T-shirt spam website"
     
 ---
     # Rants
+    priority: 8000
     title+body (regex): ['rants?']
     type: text submission
     moderators_exempt: true
     ~author: [thetorontobot]
-    action: report
+    action: filter
     action_reason: 'Possible [{{match}}]'
