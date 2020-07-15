@@ -1,4 +1,4 @@
-# setup auto redirect to r/askTO
+# question mark in title redirect to r/askTO
     title (regex): ['\?']
     type: text submission
     moderators_exempt: true
@@ -11,7 +11,7 @@
     action: filter
     
 ---
-# setup auto redirect to r/askTO
+# title+body variant redirect to r/askTO
     title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how|can).{1,20}(i|we)']
     type: text submission
     moderators_exempt: true
@@ -28,8 +28,7 @@
     title (regex): ['(uber|grabb|doordash|lyft)']
     domain: "self.toronto"
     title+body (regex, includes): ["free", "co(de|upon)", "10|20|15", "promo", "food"]
-    
-    moderators_exempt: false
+    moderators_exempt: true
     modmail: Post removed because it looked like coupon spam. Please verify.
     action: spam
 
@@ -39,7 +38,7 @@
     domain: "self.toronto"
     title+body (regex, includes): ["(keys?|wallet|i?phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
     ~title+body (regex): ['dog', 'cat', 'pet']
-    moderators_exempt: false
+    moderators_exempt: true
     action: remove
     comment: Your submission has been automatically removed because it appears to be a lost & found post, which should be posted in /r/lostandfoundTO
 
@@ -270,7 +269,7 @@ action_reason: "T-shirt spam website"
     modmail: Submission by days-old user /u/{{author}} removed. Please review.
     
 ---
-
+    #
     domain (starts-with): [m., mobile.]
     action: remove
     Comment: |
