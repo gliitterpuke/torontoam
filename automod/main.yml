@@ -10,6 +10,7 @@
     
      If you haven't seen it yet, please check out [our wiki](https://www.reddit.com/r/toronto/wiki/) for answers to regular questions.
     action: filter
+    action_reason: 'Possible question - contains {{match}}'
     
 ---
 # title+body variant redirect to r/askTO
@@ -24,6 +25,7 @@
     
      If you haven't seen it yet, please check out [our wiki](https://www.reddit.com/r/toronto/wiki/) for answers to regular questions.
     action: filter
+    action_reason: 'Possible question - contains {{match}}'
     
 ---
     # remove coupon spam
@@ -43,6 +45,15 @@
     moderators_exempt: true
     action: remove
     comment: Your submission has been automatically removed because it appears to be a lost & found post, which should be posted in /r/lostandfoundTO
+
+---
+    # remove classifieds
+    title (regex): ["(for sale|sell(ing)?)"]
+    type: text submission
+    domain: "self.toronto"
+    moderators_exempt: true
+    action: remove
+    comment: Your submission has been automatically removed because it appears to be a classified ad. 
 
 ---
 
@@ -1181,3 +1192,17 @@ action_reason: "T-shirt spam website"
     ~author: [thetorontobot]
     action: filter
     action_reason: 'Possible [{{match}}]'
+
+---
+
+    # filter kill yourself/death threats
+    type: any
+    priority: 8100
+    'title+body (regex)':
+        - hang (him|her|them|(yo)?urself)
+        - i\s*hope\s*(you|she|he|they)\s*dies?
+        - kill\s*your(self|selves)
+        - \bkys\b
+    # deliberately high priority due to the seriousness of the infringement.
+    action: filter
+    action_reason: '[kys/death threat] - possible admin report'
