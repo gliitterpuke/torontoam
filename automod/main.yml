@@ -1206,3 +1206,11 @@ action_reason: "T-shirt spam website"
     # deliberately high priority due to the seriousness of the infringement.
     action: filter
     action_reason: '[kys/death threat] - possible admin report'
+
+---
+
+#bullbear ban evader
+author:
+    name (regex, includes): [ 'bullbear' ]
+action: filter
+action_reason: Ban evader - report to admins
