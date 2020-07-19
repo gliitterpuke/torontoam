@@ -28,7 +28,7 @@
     action_reason: 'Possible question - contains {{match}}'
     
 ---
-    # remove coupon spam
+# remove coupon spam
     title (regex): ['(uber|grabb|doordash|lyft)']
     domain: "self.toronto"
     title+body (regex, includes): ["free", "co(de|upon)", "10|20|15", "promo", "food"]
@@ -37,7 +37,7 @@
     action: spam
 
 ---
-    # remove lost and found
+# remove lost and found
     title (regex): ["(lost|found|stolen)"]
     domain: "self.toronto"
     title+body (regex, includes): ["(key|wallet|phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
@@ -47,7 +47,7 @@
     comment: Your submission has been automatically removed because it appears to be a lost & found post, which should be posted in /r/lostandfoundTO
 
 ---
-    # remove classifieds
+# remove classifieds
     title (regex): ["(for sale|sell(ing)?)"]
     type: text submission
     domain: "self.toronto"
@@ -56,15 +56,13 @@
     comment: Your submission has been automatically removed because it appears to be a classified ad. 
 
 ---
-
-    # Automatically remove anything that gets 4+ reports and send modmail
+# Automatically remove anything that gets 4+ reports and send modmail
     reports: 4
     action: remove
     modmail: The above item was automatically removed due to receiving 4+ reports. Please verify that this action was correct.
 
 ---
-
-    # Domain blacklist
+# Domain blacklist
     domain+body (includes):
         - thereligionofpeace.com
         - blogspot.*
@@ -156,7 +154,6 @@
     action: spam
 
 ---
-
 # T-shirt spammers 
 type: any
 body: ["qualifiedfashion", "newshoper", "teesparrow", "masterthetees", "sungearstore", "rockinggear", "baamboom", "cooltees", "christmastees", "amezes", "halloweencolors", "gearcreators", "thefilmfix", "moviestowatch", "dizcope", "bestteeshop", "gearshopzone", "hottopics", "myguitarreview", "orimpogames", "newtshirtshop", "gearshop", "bestteeshop", "shirtsuite", "exclusivetees", "usgearfair"]
@@ -164,8 +161,7 @@ action: spam
 action_reason: "T-shirt spam website"    
 
 ---
-
-    # Known spammers, mostly to clear the spam queue.
+# Known spammers, mostly to clear the spam queue.
     author:
         - Blogwrath
         - brownpak
@@ -176,8 +172,7 @@ action_reason: "T-shirt spam website"
     action: spam
 
 ---
-
-    # Survey spam.
+# Survey spam.
     domain+body (includes):
         - esurveycreator.com
         - surveymonkey.com
@@ -189,8 +184,7 @@ action_reason: "T-shirt spam website"
     modmail: Post removed for survey spam.
 
 ---
-
-    # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
+# Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
      title+body: [beachside]
      action: remove
      author:
@@ -198,23 +192,21 @@ action_reason: "T-shirt spam website"
      modmail: Post removed due to use of potentially offensive word "{{match}}".
 
 ---
-
-    # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
+# Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
      title+body (regex, includes-word): ['n[ie]g(ger|ga|g?let|g?ro|g?uh?)s?', 'fag(gy|s)?', 'fagg?([eio]t)?(ry)?', 'japs?', 'groids?', '(Cracker|Coon)Town', 'HateFuck', 'Fatah', 'sewer rats?', 'chink(s|y|ie)?', 'trann(y|ies?)', 'din.?du', 'kill (yo)?urself', 'k[iy]kes?', 'feminazis?', 'cucks?', 'sewer rats?', 'hood.?rats?', 'kr[ao]uts?', 'd[iy]kes?', 'porch ?monke?(y|ie)s?', 'ha[jg]is?', 'honk(e|y)s?', 'spick?s?', 'wet[ -]?backs?', 'gooks?', 'jigg?[ae]r?boos?']
      action: report
      action_reason: 'contains "{{match}}"'
 
 
 ---
-    # Auto-reported words/phrases.
+# Auto-reported words/phrases.
     title+body (regex): ['soros', 'ghomeshi', 'boogaloo']
     action: report
     action_reason: 'contains "{{match}}"'
-    #modmail: Post reported due to use of potentially offensive word "{{match}}".
+#modmail: Post reported due to use of potentially offensive word "{{match}}".
 
 ---
-
-    # Send a mod message regarding Facebook links by default and send a mod mail.
+# Send a mod message regarding Facebook links by default and send a mod mail.
     url+body (regex): ["facebook\\.com", "fb\\.com", "fb\\.me"]
     ~author:
         - torontothingstodo
@@ -224,8 +216,7 @@ action_reason: "T-shirt spam website"
     modmail: Facebook link posted with potential personal information. Please review.
 
 ---
-
-    # Send a mod message regarding Facebook media links by default and comment on the post.
+# Send a mod message regarding Facebook media links by default and comment on the post.
     url+body (regex): ["fbcdn-s?photos-.*?\\.akamaihd\\.net","fbcdn\\.net","facebook\\.com/photo*","facebook\\.com/video*","facebook\\.com/*/albums/*"]
     action: remove
     modmail: Facebook hosted media posted. Post has been removed and a comment has been left. Please review.
@@ -237,16 +228,14 @@ action_reason: "T-shirt spam website"
         Please consider reposting your media on [imgur](https://imgur.com/), [YouTube](https://www.youtube.com/) or another media hosting provider.
 
 ---
-
-    # Automatically remove Facebook links that gets 2+ reports and send modmail
+# Automatically remove Facebook links that gets 2+ reports and send modmail
     url+body (regex): ["facebook\\.com", "fbcdn\\.net", "fb\\.com", "fb\\.me"]
     reports: 2
     action: remove
     modmail: Facebook link was automatically removed due to receiving 2+ reports. Please review.
 
 ---
-
-    # Remove links to crowdfunding sites.
+# Remove links to crowdfunding sites.
     standard: crowdfunding sites
     author:
         account_age: "< 7"
@@ -254,7 +243,7 @@ action_reason: "T-shirt spam website"
     modmail: Post removed for linking to a crowdfunding site. Please review.
 
 ---
-    # Remove comments and posts if the user is less than 7 days old or has less than 50 karma and their comment matches certain warning words.
+# Remove comments and posts if the user is less than 7 days old or has less than 50 karma and their comment matches certain warning words.
     title+body (regex): "cringe|\\bmods?|asshole|bitch|butt\\s*hurt|butt\\s?sex|censor(ing|ed)?s?|chinks?|circle\\s*jerk|creep\\b|cunts?|dipshits?|douche(bag)?s?|down\\s*vote|facebook.com|fb.com|fag|fuck (yo)?u|hipster|homos?\\b|kill yourself|linkedin.com|mod(erator)?s?|neck\\s*beard|nigger|pakis?|pieces? of shit|r\\/cringe|racial|racis[mt]|retard(ed)?s?|sluts?|spic\\b|stfu|the gays|trann(y|ies)|up\\s*vote|whore|you fuck|you're fucked"
     author:
         satisfy_any_threshold: false
@@ -274,7 +263,7 @@ action_reason: "T-shirt spam website"
     ~author: [topublichealth]
 
 ---
-    #New Account Submission Filter
+#New Account Submission Filter
     type: submission
     author:
         account_age: "< 7"
@@ -282,7 +271,7 @@ action_reason: "T-shirt spam website"
     modmail: Submission by days-old user /u/{{author}} removed. Please review.
     
 ---
-    #
+# Remove mobile links
     domain (starts-with): [m., mobile.]
     action: remove
     Comment: |
@@ -291,8 +280,7 @@ action_reason: "T-shirt spam website"
         Please submit a non-mobile link instead.
 
 ---
-
-    # Doxxing alerts.
+# Doxxing alerts.
     title+body (regex): ["\\(?(\\d{3})\\)?([ .-])(\\d{3})([ .-])(\\d{4})","(\\d{5})([ .-])(\\d{6})","\\(?(\\d{4})\\)?([ .-])(\\d{3})([ .-])(\\d{3})","\\(?(\\d{2})\\)?([ .-])(\\d{4})([ .-])(\\d{4})","\\(?(\\d{2})\\)?([ .-])(\\d{3})([ .-])(\\d{4})","\\+([\\d ]{10,15})"]
     ~body+url (regex): "(\\[[^\\]]+?\\]\\()?(https?://|www\\.)\\S+\\)?"
     ~body+title+url (regex):
@@ -310,7 +298,7 @@ action_reason: "T-shirt spam website"
         - 999([ .-])119([ .-])7253
         - 867( -)?5309
         - 505\\W*503\\W*4455
-        - 416-921-9494    # Tenant housing.
+        - 416-921-9494# Tenant housing.
         - 416-808-2222  # TPS non-emergency
         - 416-392-2273 # Toronto Humane Society
         - 877-378-6123 # Presto customer service
@@ -327,15 +315,15 @@ action_reason: "T-shirt spam website"
 
 
 ---
-    # Remove comments by users with -100 karma, with a whitelist for non-trolls with often dissenting opinions.
+# Remove comments by users with -100 karma, with a whitelist for non-trolls with often dissenting opinions.
     author:
         comment_karma: "< -99"
     action: remove
-    #modmail: Post by negative-karma user /u/{{author}} removed as potential troll. Please review and considering whitelisting in AutoModerator wiki.
+#modmail: Post by negative-karma user /u/{{author}} removed as potential troll. Please review and considering whitelisting in AutoModerator wiki.
 
 ---
 
-    # Approve all comments & posts
+# Approve all comments & posts
     priority: 9000
     author:
         - emily_strange
@@ -351,8 +339,7 @@ action_reason: "T-shirt spam website"
     action: approve
 
 ---
-
-    # Send totesmessenger comments to modmail
+# Send totesmessenger comments to modmail
     author:
         - totesmessenger
     action: remove
@@ -364,8 +351,7 @@ action_reason: "T-shirt spam website"
         
 
 ---
-
-    # User shadowbans
+# User shadowbans
     author:
     
         - 93TorontoBlueJays
@@ -788,8 +774,7 @@ action_reason: "T-shirt spam website"
     action: remove
 
 ---
-
-    # Remove comments under 25 characters that include the words: idiot, dumb, stupid, idiet and made by /u/ur_a_idiet
+# Remove comments under 25 characters that include the words: idiot, dumb, stupid, idiet and made by /u/ur_a_idiet
     body(regex): ['idi[eo]t', 'dumb', 'stupid']
     type: comment
     body_shorter_than: 26
@@ -798,8 +783,7 @@ action_reason: "T-shirt spam website"
     action: remove
 
 ---
-
-    # Report posts possibly by the anti-cop-rant spammer.
+# Report posts possibly by the anti-cop-rant spammer.
     title+body (includes, case-sensitive):
         - POLICE
         - LISI
@@ -821,8 +805,7 @@ action_reason: "T-shirt spam website"
     modmail: "Post by new user /u/{{author}} reported as possibly being by the anti-cop spammer (using the word '{{match-title+body}}'). Please double-check."
     
 ---
-
-    # auto-sticky /u/torontothingstodo posts
+# auto-sticky /u/torontothingstodo posts
     author:
           - exploretoapp
     title: ["Things To Do"]
@@ -830,8 +813,7 @@ action_reason: "T-shirt spam website"
     set_sticky: 2
 
 ---
-
-    # AUTO CONTROVERSIAL TAG ISLAM/MUSLIM/Jordan Peterson Stuff    
+# AUTO CONTROVERSIAL TAG ISLAM/MUSLIM/Jordan Peterson Stuff    
     title (regex, includes): ["Islam", "M(u|o)slim", "(BLM|black lives matter)", "Jordan Peterson", "Soufi"]
     type: submission
     moderators_exempt: false
@@ -847,7 +829,7 @@ action_reason: "T-shirt spam website"
     modmail: Post tagged as controversial, please verify.
 
 ---
-    # Auto Flair Articles
+# Auto Flair Articles
     type: link submission
     domain: [blogto.com, torontolife.com, torontoist.com, vice.com, spacing.ca, thebeaverton.com, bnn.ca, torontostoreys.com, nowtoronto.com, huffingtonpost.ca, nytimes.com, nationalgeographic.com, stevemunro.ca, torontopubliclibrary.ca, urbantoronto.ca, buzzbuzzhome.com]
     set_flair: 
@@ -855,13 +837,13 @@ action_reason: "T-shirt spam website"
         template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
 
 ---
-    # Auto Flair Discussion
+# Auto Flair Discussion
     type: text submission
     set_flair:
         css_class: linkflair-flair-discussion
         template_id: ae79e452-9cc0-11e7-b690-0ee40dd4f03a
 ---
-    # Auto Flair History
+# Auto Flair History
     type: link submission
     domain: [history.com]
     set_flair: 
@@ -869,35 +851,34 @@ action_reason: "T-shirt spam website"
         template_id: ba1346c8-9cc0-11e7-a9ad-0e9f265a8f2c
 
 ---
-    # Auto Flair News
+# Auto Flair News
     type: link submission
     domain: [cbc.ca, ctv.ca, toronto.ctvnews.ca, ctvnews.ca, cp24.com, tvo.org, citynews.ca, globalnews.ca, bellmedia.ca, iheartradio.ca, thestar.com, theglobeandmail.com, metronews.ca, beachmetro.com, financialpost.com, nationalpost.com, torontosun.com, insidetoronto.com, sportsnet.ca, urbantoronto.ca, ipolitics.ca, 680news.com]
     set_flair: 
         css_class: linkflair-flair-news
         template_id: c4304dcc-9cc0-11e7-bdc8-0efff6c24092
 ---
-    # Auto Flair Picture
+# Auto Flair Picture
     standard: image hosting sites
     set_flair: 
         css_class: linkflair-flair-picture
         template_id: ce3e9792-9cc0-11e7-8b05-0e6e91299d12
 ---
-    # Auto Flair Twitter
+# Auto Flair Twitter
     type: link submission
     domain: [twitter.com]
     set_flair: 
         css_class: linkflair-flair-twitter
         template_id: b8a076d4-b904-11e7-90e6-0e34dfbbc874
 ---
-    # Auto Flair Video
+# Auto Flair Video
     type: link submission
     domain: [youtube.com, youtu.be, vimeo.com, v.redd.it, streamable.com]
     set_flair:
         css_class: linkflair-flair-video
         template_id: be359944-b904-11e7-b2e8-0ea734235272
 ---
-
-        # Auto Flair Alert
+# Auto Flair Alert
     priority: 1
     title (regex): ["(TTC|subway|road) closures?", "missing"]
     domain: [torontopolice.on.ca, torontopolice.on, torontopolice.ca, ttc.ca, yrp.ca, self.toronto]
@@ -906,7 +887,7 @@ action_reason: "T-shirt spam website"
         template_id: d486f26c-b60c-11e5-8295-0e80ab820361
    
 ---
-    # Flair Your Fixer/Opinion
+# Flair Your Fixer/Opinion
     priority: 1
     type: link submission
     url: [thestar.com/opinion, thestar.com/yourfixer, thestar.com/business/opinion]
@@ -915,7 +896,7 @@ action_reason: "T-shirt spam website"
         template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
 
 ---
-    # Auto Flair BlogTO as Articles
+# Auto Flair BlogTO as Articles
     type: link submission
     domain: [blogto.com]
     set_flair: 
@@ -923,7 +904,7 @@ action_reason: "T-shirt spam website"
         template_id: e4d14082-b60c-11e5-bbd7-0e041cdfb86f
     
 ---
-    # Remove Youtube Channel
+# Remove Youtube Channel
     domain: [youtube.com, youtu.be]
     media_author: ["Rebel Media", "Faith J Goldy", "The Observable Thing", "Rebel News", "Rebel Canada", "Rebel Edge"]
     action: remove
@@ -931,7 +912,7 @@ action_reason: "T-shirt spam website"
     moderators_exempt: false
     
 ---
-    #Mod Preview
+# Mod Preview
     author:
         - mexican_lemur
         - WigglyButtNugget
@@ -1117,13 +1098,12 @@ action_reason: "T-shirt spam website"
        
     action: filter
     action_reason: "Mod Preview"
-    #modmail: "Post removed for Mod Preview - please review {{url}}"
-    #modmail_subject: "Mod Preview"
-    #^If you'd prefer modmail rather than modqueue, remove the # from the above 2 lines and add one to the beginning of action_reason.
+#modmail: "Post removed for Mod Preview - please review {{url}}"
+#modmail_subject: "Mod Preview"
+#^If you'd prefer modmail rather than modqueue, remove the # from the above 2 lines and add one to the beginning of action_reason.
     
 ---
-
-    # AUTO TAG FOR CORONAVIRUS STUFF    
+# AUTO TAG FOR CORONAVIRUS STUFF    
     title (regex): ["Corona(virus)?", "SARS", "cov(-?2|id(-?19)?)"]
     type: submission
     moderators_exempt: false
@@ -1142,24 +1122,21 @@ action_reason: "T-shirt spam website"
     modmail: Keep an eye out mother fuckerssss.
 
 ---
-
-    # Posts related to moderators
+# Posts related to moderators
     priority: 9000
     title+body (regex): ['mod(erator)?s?']
     action: filter
     action_reason: 'The above item mentioned the moderators - [{{match}}]'
 
 ---
-
-    # Comments related to moderators
+# Comments related to moderators
     priority: 8000
     title+body (regex): ['mod(erator)?s?']
     action: report
     action_reason: 'The above item mentioned the moderators - [{{match}}]'
 
 ---
-
-    # Filter items that specifically mention mods by name in the title
+# Filter items that specifically mention mods by name in the title
     priority: 8000
     title+body (regex): ['gammadeltat', 'blackbeatsblue', 'lilfunky1?', '(thegoodbadand)?smoggy', 'beef-supreme', 'slicecom', 'aahrg', 'j0hnny(engl1sh)?', 'fapitalismm?', 'thetorontobot']
     action: report
@@ -1167,15 +1144,14 @@ action_reason: "T-shirt spam website"
     
 ---
 
-    # Possible removal evasion
+# Possible removal evasion
     priority: 9000
     title+body (regex): ['(remov(ed?|ing)|delet(ing|ed?)).{1,20}(post|comment)s?']
     action: filter
     action_reason: 'Possible removal evasion - [{{match}}]'
     
 ---
-
-    # Self-promo
+# Self-promo
     priority: 7500
     title+body (regex): ['(i|we).{1,20}(made|launched).{1,20}(store|(web)?site|business|app)', 'lo(ve|ok(ing)?).{1,20}(feedback|suggestions)']
     moderators_exempt: true
@@ -1184,7 +1160,7 @@ action_reason: "T-shirt spam website"
     action_reason: 'Possible self promo - [{{match}}]'
     
 ---
-    # Rants
+# Rants
     priority: 8000
     title+body (regex): ['rants?']
     type: text submission
@@ -1194,8 +1170,7 @@ action_reason: "T-shirt spam website"
     action_reason: 'Possible [{{match}}]'
 
 ---
-
-    # filter kill yourself/death threats
+# filter kill yourself/death threats
     type: any
     priority: 8100
     'title+body (regex)':
@@ -1203,13 +1178,12 @@ action_reason: "T-shirt spam website"
         - i\s*hope\s*(you|she|he|they)\s*dies?
         - kill\s*your(self|selves)
         - \bkys\b
-    # deliberately high priority due to the seriousness of the infringement.
+# deliberately high priority due to the seriousness of the infringement.
     action: filter
     action_reason: '[kys/death threat] - possible admin report'
 
 ---
-
-    #bullbear ban evader
+# bullbear ban evader
     author:
         name (regex, includes): [ 'bullbear' ]
     action: filter
