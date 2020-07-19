@@ -10,7 +10,7 @@
     
      If you haven't seen it yet, please check out [our wiki](https://www.reddit.com/r/toronto/wiki/) for answers to regular questions.
     action: filter
-    action_reason: 'Possible question - contains {{match}}'
+    action_reason: 'Possible question'
     
 ---
 # title+body variant redirect to r/askTO
@@ -28,7 +28,7 @@
     action_reason: 'Possible question - contains {{match}}'
     
 ---
-# remove coupon spam
+# Remove coupon spam
     title (regex): ['(uber|grabb|doordash|lyft)']
     domain: "self.toronto"
     title+body (regex, includes): ["free", "co(de|upon)", "10|20|15", "promo", "food"]
@@ -37,7 +37,7 @@
     action: spam
 
 ---
-# remove lost and found
+# Remove lost and found
     title (regex): ["(lost|found|stolen)"]
     domain: "self.toronto"
     title+body (regex, includes): ["(key|wallet|phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
@@ -47,13 +47,14 @@
     comment: Your submission has been automatically removed because it appears to be a lost & found post, which should be posted in /r/lostandfoundTO
 
 ---
-# remove classifieds
+# Remove classifieds
     title (regex): ["(for sale|sell(ing)?)"]
     type: text submission
     domain: "self.toronto"
     moderators_exempt: true
     action: remove
-    comment: Your submission has been automatically removed because it appears to be a classified ad. 
+    comment: Your submission has been automatically removed because it appears to be a classified ad.
+    action_reason: Possible classified - {{match}}
 
 ---
 # Automatically remove anything that gets 4+ reports and send modmail
@@ -152,6 +153,7 @@
         - theredpanther.com
         
     action: spam
+    action_reason: Spam site - {{match}}
 
 ---
 # T-shirt spammers 
@@ -181,7 +183,7 @@ action_reason: "T-shirt spam website"
     author:
         account_age: "< 7"
     action: spam
-    modmail: Post removed for survey spam.
+    modmail: Survey spam - {{match}}
 
 ---
 # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
@@ -195,15 +197,13 @@ action_reason: "T-shirt spam website"
 # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
      title+body (regex, includes-word): ['n[ie]g(ger|ga|g?let|g?ro|g?uh?)s?', 'fag(gy|s)?', 'fagg?([eio]t)?(ry)?', 'japs?', 'groids?', '(Cracker|Coon)Town', 'HateFuck', 'Fatah', 'sewer rats?', 'chink(s|y|ie)?', 'trann(y|ies?)', 'din.?du', 'kill (yo)?urself', 'k[iy]kes?', 'feminazis?', 'cucks?', 'sewer rats?', 'hood.?rats?', 'kr[ao]uts?', 'd[iy]kes?', 'porch ?monke?(y|ie)s?', 'ha[jg]is?', 'honk(e|y)s?', 'spick?s?', 'wet[ -]?backs?', 'gooks?', 'jigg?[ae]r?boos?']
      action: report
-     action_reason: 'contains "{{match}}"'
-
+     action_reason: 'Contains "{{match}}"'
 
 ---
 # Auto-reported words/phrases.
     title+body (regex): ['soros', 'ghomeshi', 'boogaloo']
     action: report
     action_reason: 'contains "{{match}}"'
-#modmail: Post reported due to use of potentially offensive word "{{match}}".
 
 ---
 # Send a mod message regarding Facebook links by default and send a mod mail.
@@ -260,7 +260,7 @@ action_reason: "T-shirt spam website"
         is_contributor: false
     action: remove
     modmail: Post by hours-old user /u/{{author}} removed. Please review.
-    ~author: [topublichealth]
+    action_reason: Post by new user - {{author}}
 
 ---
 #New Account Submission Filter
@@ -269,6 +269,7 @@ action_reason: "T-shirt spam website"
         account_age: "< 7"
     action: remove
     modmail: Submission by days-old user /u/{{author}} removed. Please review.
+    action_reason: Submission by new user - {{author}}
     
 ---
 # Remove mobile links
@@ -278,6 +279,7 @@ action_reason: "T-shirt spam website"
         Your submission was automatically removed because you linked to the mobile version of a website. 
 
         Please submit a non-mobile link instead.
+    action_reason: Mobile link
 
 ---
 # Doxxing alerts.
@@ -312,14 +314,14 @@ action_reason: "T-shirt spam website"
         {{permalink}}
 
         The above {{kind}} by /u/{{author}} was removed because it contained a possible phone number. Please investigate immediately, and consider adding to rule whitelist on the wiki page.
-
+    action_reason: Potential doxing - {{match}}
 
 ---
 # Remove comments by users with -100 karma, with a whitelist for non-trolls with often dissenting opinions.
     author:
         comment_karma: "< -99"
     action: remove
-#modmail: Post by negative-karma user /u/{{author}} removed as potential troll. Please review and considering whitelisting in AutoModerator wiki.
+    action_reason: -99 karma - {{match}}
 
 ---
 
@@ -781,6 +783,7 @@ action_reason: "T-shirt spam website"
     author:
         - ur_a_idiet
     action: remove
+    action_reason: Removed short idiet comment
 
 ---
 # Report posts possibly by the anti-cop-rant spammer.
@@ -801,7 +804,7 @@ action_reason: "T-shirt spam website"
         comment_karma: "< 10"
         account_age: "< 1"
     action: report
-    report_reason: "possible anti-cop rant spam (match on '{{match-title+body}}')"
+    action_reason: "possible anti-cop rant spam (match on '{{match-title+body}}')"
     modmail: "Post by new user /u/{{author}} reported as possibly being by the anti-cop spammer (using the word '{{match-title+body}}'). Please double-check."
     
 ---
@@ -813,7 +816,7 @@ action_reason: "T-shirt spam website"
     set_sticky: 2
 
 ---
-# AUTO CONTROVERSIAL TAG ISLAM/MUSLIM/Jordan Peterson Stuff    
+# Controversial Tag on Islam/BLM/Jordan Peterson Stuff    
     title (regex, includes): ["Islam", "M(u|o)slim", "(BLM|black lives matter)", "Jordan Peterson", "Soufi"]
     type: submission
     moderators_exempt: false
@@ -827,6 +830,7 @@ action_reason: "T-shirt spam website"
         
         Negative opinions are fine! Blatant racism and pushing racist agendas are not! Please be careful to follow Rules 2 and 3 and engage in polite, respectful dialogue.
     modmail: Post tagged as controversial, please verify.
+    action_reason: Controversial tag - {{match}}
 
 ---
 # Auto Flair Articles
@@ -1095,15 +1099,11 @@ action_reason: "T-shirt spam website"
         - HolUp-
         - TheGoodPlaceJanet
        
-       
     action: filter
     action_reason: "Mod Preview"
-#modmail: "Post removed for Mod Preview - please review {{url}}"
-#modmail_subject: "Mod Preview"
-#^If you'd prefer modmail rather than modqueue, remove the # from the above 2 lines and add one to the beginning of action_reason.
     
 ---
-# AUTO TAG FOR CORONAVIRUS STUFF    
+# Controversial Tag for Coronavirus   
     title (regex): ["Corona(virus)?", "SARS", "cov(-?2|id(-?19)?)"]
     type: submission
     moderators_exempt: false
