@@ -40,7 +40,7 @@
     # remove lost and found
     title (regex): ["(lost|found|stolen)"]
     domain: "self.toronto"
-    title+body (regex, includes): ["(keys?|wallet|i?phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
+    title+body (regex, includes): ["(key|wallet|phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
     ~title+body (regex): ['dog', 'cat', 'pet']
     moderators_exempt: true
     action: remove
@@ -200,14 +200,14 @@ action_reason: "T-shirt spam website"
 ---
 
     # Auto-removed words/phrases. Keeping this list fairly short as we have a history of discussing controversial word use (e.g. Ford using "faggot").
-     title+body (regex): ['n[ie]g(ger|ga|g?let|g?ro|g?uh?)s?', 'fag(gy|s)?', 'fagg?([eio]t)?(ry)?', 'japs?', 'groids?', '(Cracker|Coon)Town', 'HateFuck', 'Fatah', 'sewer rats?', 'chink(s|y|ie)?', 'trann(y|ies?)', 'din.?du', 'kill (yo)?urself', 'k[iy]kes?', 'feminazis?', 'cucks?', 'sewer rats?', 'hood.?rats?', 'kr[ao]uts?', 'd[iy]kes?', 'porch ?monke?(y|ie)s?', 'ha[jg]is?', 'honk(e|y)s?', 'spick?s?', 'wet[ -]?backs?', 'gooks?', 'jigg?[ae]r?boos?']
+     title+body (regex, includes-word): ['n[ie]g(ger|ga|g?let|g?ro|g?uh?)s?', 'fag(gy|s)?', 'fagg?([eio]t)?(ry)?', 'japs?', 'groids?', '(Cracker|Coon)Town', 'HateFuck', 'Fatah', 'sewer rats?', 'chink(s|y|ie)?', 'trann(y|ies?)', 'din.?du', 'kill (yo)?urself', 'k[iy]kes?', 'feminazis?', 'cucks?', 'sewer rats?', 'hood.?rats?', 'kr[ao]uts?', 'd[iy]kes?', 'porch ?monke?(y|ie)s?', 'ha[jg]is?', 'honk(e|y)s?', 'spick?s?', 'wet[ -]?backs?', 'gooks?', 'jigg?[ae]r?boos?']
      action: report
      action_reason: 'contains "{{match}}"'
 
 
 ---
     # Auto-reported words/phrases.
-    title+body (regex): ['soros', 'ghomeshi', 'boogaloos?']
+    title+body (regex): ['soros', 'ghomeshi', 'boogaloo']
     action: report
     action_reason: 'contains "{{match}}"'
     #modmail: Post reported due to use of potentially offensive word "{{match}}".
