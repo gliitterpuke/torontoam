@@ -15,7 +15,7 @@
 ---
 # title+body variant redirect to r/askTO
     priority: 7400
-    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how do|can)\b.{1,20}(i|we)\b']
+    title+body (regex): ['(need|look|have).{1,20}(advice|help)', '(how do|can)\b.{1,20}(i|we)\b']
     type: text submission
     moderators_exempt: true
     comment: |
@@ -31,16 +31,16 @@
 # Remove coupon spam
     title (regex): ['(uber|grabb|doordash|lyft)']
     domain: "self.toronto"
-    title+body (regex, includes): ["free", "co(de|upon)", "10|20|15", "promo", "food"]
+    title+body (regex, includes): ['free', 'co(de|upon)', '10|20|15', 'promo', 'food']
     moderators_exempt: true
     modmail: Post removed because it looked like coupon spam. Please verify.
     action: spam
 
 ---
 # Remove lost and found
-    title (regex): ["(lost|found|stolen)"]
-    domain: "self.toronto"
-    title+body (regex, includes): ["(key|wallet|phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)"]
+    title (regex): ['(lost|found|stolen)']
+    domain: 'self.toronto'
+    title+body (regex, includes): ['(key|wallet|phone|bag|purse|camera|bi(ke|cycle)|hat|jacket|coat|laptop|computer)']
     ~title+body (regex): ['dog', 'cat', 'pet']
     moderators_exempt: true
     action: remove
@@ -48,7 +48,7 @@
 
 ---
 # Remove classifieds
-    title (regex): ["(for sale|sell(ing)?)"]
+    title (regex): ['(for sale|sell(ing)?)']
     type: text submission
     domain: "self.toronto"
     moderators_exempt: true
@@ -811,13 +811,13 @@ action_reason: "T-shirt spam website"
 # auto-sticky /u/torontothingstodo posts
     author:
           - exploretoapp
-    title: ["Things To Do"]
+    title: ['Things To Do']
     type: text submission
     set_sticky: 2
 
 ---
 # Controversial Tag on Islam/BLM/Jordan Peterson Stuff    
-    title (regex, includes): ["Islam", "M(u|o)slim", "(BLM|black lives matter)", "Jordan Peterson", "Soufi"]
+    title (regex, includes): ['Islam', 'M(u|o)slim', '(BLM|black lives matter)', 'Jordan Peterson', 'Soufi']
     type: submission
     moderators_exempt: false
     comment_stickied: true
@@ -884,7 +884,7 @@ action_reason: "T-shirt spam website"
 ---
 # Auto Flair Alert
     priority: 1
-    title (regex): ["(TTC|subway|road) closures?", "missing"]
+    title (regex): ['(TTC|subway|road) closures?', 'missing']
     domain: [torontopolice.on.ca, torontopolice.on, torontopolice.ca, ttc.ca, yrp.ca, self.toronto]
     set_flair: 
         css_class: linkflair-flair-alert
@@ -1104,7 +1104,7 @@ action_reason: "T-shirt spam website"
     
 ---
 # Controversial Tag for Coronavirus   
-    title (regex): ["Corona(virus)?", "SARS", "cov(-?2|id(-?19)?)"]
+    title (regex): ['Corona(virus)?', 'SARS', 'cov(-?2|id(-?19)?)']
     type: submission
     moderators_exempt: false
     comment_stickied: true
