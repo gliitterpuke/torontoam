@@ -15,7 +15,7 @@
 ---
 # title+body variant redirect to r/askTO
     priority: 7400
-    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how|can)\b.{1,20}(i|we)\b']
+    title+body (regex): ["(need|look|have).{1,20}(advice|help)", '(how do|can)\b.{1,20}(i|we)\b']
     type: text submission
     moderators_exempt: true
     comment: |
