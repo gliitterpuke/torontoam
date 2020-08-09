@@ -321,7 +321,7 @@ action_reason: "T-shirt spam website"
     author:
         comment_karma: "< -99"
     action: remove
-    action_reason: -99 karma - {{match}}
+    action_reason: -99 karma - {{author}}
 
 ---
 
