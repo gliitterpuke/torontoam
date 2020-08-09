@@ -591,6 +591,6 @@ action_reason: "T-shirt spam website"
 ---
 # bullbear ban evader
     author:
-        name (regex, includes): [ 'bullbear' ]
+        name (regex, includes): [ 'bull\wbear' ]
     action: filter
     action_reason: Ban evader - report to admins
