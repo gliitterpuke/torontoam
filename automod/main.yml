@@ -350,15 +350,6 @@ action_reason: "T-shirt spam website"
         /u/{{author}} reporting link from another sub:
         
         {{body}}
-        
-
----
-# User shadowbans
-    author:
-    
-        - fake
-
-    action: remove
 
 ---
 # Remove comments under 25 characters that include the words: idiot, dumb, stupid, idiet and made by /u/ur_a_idiet
@@ -501,14 +492,6 @@ action_reason: "T-shirt spam website"
     moderators_exempt: false
     
 ---
-# Mod Preview
-    author:
-        - fake
-       
-    action: filter
-    action_reason: "Mod Preview"
-    
----
 # Controversial Tag for Coronavirus   
     title (regex): ['Corona(virus)?', 'SARS', 'cov(-?2|id(-?19)?)']
     type: submission
@@ -591,6 +574,23 @@ action_reason: "T-shirt spam website"
 ---
 # bullbear ban evader
     author:
-        name (regex, includes): [ 'bull\wbear' ]
+        name (regex, includes): [ 'bull\w?bear' ]
     action: filter
     action_reason: Ban evader - report to admins
+        
+
+---
+# User shadowbans
+    author:
+    
+        - fake
+
+    action: remove
+    
+---
+# Mod Preview
+    author:
+        - fake
+       
+    action: filter
+    action_reason: "Mod Preview"
